@@ -9,9 +9,9 @@ import Foundation
 import CoreLocation
 
 protocol LocationManagerDelegate: AnyObject {
-    func onDisabledLocationService()
     func onEnabledAllowedLocationService()
     func onEnabledDisallowedLocationService()
+    func onDisabledLocationService()
     func onReceiveLocations(locations: [CLLocation])
 }
 
@@ -19,7 +19,7 @@ protocol LocationManagerProtocol: AnyObject {
     var location: CLLocation? { get }
     var delegate: LocationManagerDelegate? { get set }
     
-    func bootstrap()
+    func run()
 }
 
 final class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
@@ -33,7 +33,7 @@ final class LocationManager: NSObject, LocationManagerProtocol, CLLocationManage
         manager.location
     }
     
-    func bootstrap() {
+    func run() {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         manager.requestWhenInUseAuthorization()

@@ -10,6 +10,7 @@ import XCTest
 
 class weather_appTests: XCTestCase {
     override func setUpWithError() throws {
+		
     }
 
     override func tearDownWithError() throws {

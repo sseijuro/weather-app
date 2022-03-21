@@ -1,5 +1,5 @@
 //
-//  HttpNetworkManager.swift
+//  HttpNetworkClientProtocol.swift
 //  weather-app
 //
 //  Created by Alexandr Kozorez on 20.03.2022.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-public protocol HttpNetworkManager {}
+public protocol HttpNetworkClientProtocol {}
 
-public extension HttpNetworkManager {
+public extension HttpNetworkClientProtocol {
     func httpStatusMiddleware(_ response: HTTPURLResponse) -> Result<Any?, HttpNetworkManagerError> {
         switch response.statusCode {
             case 200...299:

@@ -7,20 +7,18 @@
 
 import Foundation
 
-struct WeatherNetworkManager: HttpNetworkManager {
-    private let router: HttpRouter<WeatherEndpoint> = HttpRouter()
-    private let weatherQueue = DispatchQueue(
-        label: "weather.manager.queue",
-        qos: .background
-    )
-    
-    private let weatherSemaphore = DispatchSemaphore(value: 0)
-    
+struct WeatherNetworkManager {
+	let weatherClient: WeatherNetworkClient<WeatherEndpoint>
+	
+	init(client: WeatherNetworkClient<WeatherEndpoint> = WeatherNetworkClient()) {
+		weatherClient = client
+	}
+	
     func getWeather(
         for cityNamy: String,
         completion: @escaping (Result<WeatherDTO?, HttpNetworkManagerError>) -> ()
     ) {
-        fetchEndpoint(.cityWeather(cityName: cityNamy), completion: completion, type: WeatherDTO.self)
+		weatherClient.fetch(.cityWeather(cityName: cityNamy), completion: completion, type: WeatherDTO.self)
     }
     
     func getWeather(
@@ -28,7 +26,7 @@ struct WeatherNetworkManager: HttpNetworkManager {
         lon: Double,
         completion: @escaping (Result<WeatherDTO?, HttpNetworkManagerError>) -> ()
     ) {
-        fetchEndpoint(.latLonWeather(lat: lat, lon: lon), completion: completion, type: WeatherDTO.self)
+		weatherClient.fetch(.latLonWeather(lat: lat, lon: lon), completion: completion, type: WeatherDTO.self)
     }
     
     func getForecast(
@@ -36,38 +34,8 @@ struct WeatherNetworkManager: HttpNetworkManager {
         lon: Double,
         completion: @escaping (Result<ForecastDTO?, HttpNetworkManagerError>) -> ()
     ) {
-        fetchEndpoint(.forecast(lat: lat, lon: lon), completion: completion, type: ForecastDTO.self)
+		weatherClient.fetch(.forecast(lat: lat, lon: lon), completion: completion, type: ForecastDTO.self)
     }
     
-    private func fetchEndpoint<T: Decodable>(
-        _ endpoint: WeatherEndpoint,
-        completion: @escaping (Result<T?, HttpNetworkManagerError>) -> (),
-        type: T.Type = T.self
-    ) {
-        weatherQueue.sync {
-            Thread.sleep(forTimeInterval: 1)
-            router.resume(endpoint) { data, response, error in
-                defer { weatherSemaphore.signal() }
-                if error != nil {
-                    return completion(.failure(.connectionError))
-                }
-                
-                guard let response = response as? HTTPURLResponse else {
-                    return completion(.failure(.unknownError))
-                }
-                
-                switch httpStatusMiddleware(response) {
-                    case .failure(let error):
-                        return completion(.failure(error))
-                    case .success(_):
-                        guard let data = data,
-                              let decodedData = try? JSONDecoder().decode(type, from: data) else {
-                                  return completion(.failure(.emptyDataError))
-                              }
-                        return completion(.success(decodedData))
-                }
-            }
-        }
-        weatherSemaphore.wait()
-    }
+	
 }

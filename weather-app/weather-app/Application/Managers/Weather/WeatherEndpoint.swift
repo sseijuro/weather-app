@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WeatherEndpoint: HttpEndpoint {
+public enum WeatherEndpoint: HttpEndpoint {
     case cityWeather(cityName: String)
     case latLonWeather(lat: Double, lon: Double)
     case forecast(lat: Double, lon: Double)
@@ -28,11 +28,11 @@ enum WeatherEndpoint: HttpEndpoint {
         "https://api.openweathermap.org/data/2.5/"
     }
     
-    var url: URL {
+    public var url: URL {
         URL(string: baseAPIAddress)!
     }
     
-    var path: String {
+	public var path: String {
         switch self {
             case .cityWeather:
                 return "weather"
@@ -43,14 +43,14 @@ enum WeatherEndpoint: HttpEndpoint {
         }
     }
     
-    var method: HttpMethod {
+	public var method: HttpMethod {
         switch self {
             default:
                 return .get
         }
     }
     
-    var task: HttpTask {
+	public var task: HttpTask {
         switch self {
             case .cityWeather(let cityName):
                 return .requestWithParams(
@@ -87,7 +87,7 @@ enum WeatherEndpoint: HttpEndpoint {
         }
     }
     
-    var headers: HttpHeaders? {
+	public var headers: HttpHeaders? {
         nil
     }
 }

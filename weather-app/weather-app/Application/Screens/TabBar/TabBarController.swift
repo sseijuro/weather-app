@@ -11,9 +11,11 @@ import UIKit
 final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.tintColor = .systemOrange
         viewControllers = [
-            setupConcretteModule(for: ViewController(), withTag: "Home", withIconTag: "house"),
-            setupConcretteModule(for: UIViewController(), withTag: "Weather", withIconTag: "smoke")
+            setupConcretteModule(for: HomeViewController(), withTag: "Home", withIconTag: "house"),
+            setupConcretteModule(for: UIViewController(), withTag: "Weather", withIconTag: "smoke"),
+            setupConcretteModule(for: UIViewController(), withTag: "About", withIconTag: "info.circle")
         ]
     }
     
@@ -26,7 +28,6 @@ final class TabBarController: UITabBarController {
         navController.tabBarItem.title = NSLocalizedString(tag, comment: "")
         navController.tabBarItem.image = UIImage(systemName: iconTag)
         rootViewController.navigationItem.title = tag
-        navController.navigationBar.prefersLargeTitles = true
         return navController
     }
     
