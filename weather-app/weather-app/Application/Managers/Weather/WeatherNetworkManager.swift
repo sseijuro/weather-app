@@ -16,15 +16,34 @@ struct WeatherNetworkManager: HttpNetworkManager {
     
     private let weatherSemaphore = DispatchSemaphore(value: 0)
     
-    func getWeather(for cityNamy: String, completion: @escaping (WeatherNetworkManagerResult) -> ()) {
-        getWeather(.cityWeather(cityName: cityNamy), completion: completion)
+    func getWeather(
+        for cityNamy: String,
+        completion: @escaping (Result<WeatherDTO?, HttpNetworkManagerError>) -> ()
+    ) {
+        fetchEndpoint(.cityWeather(cityName: cityNamy), completion: completion, type: WeatherDTO.self)
     }
     
-    func getWeather(lat: Double, lon: Double, completion: @escaping (WeatherNetworkManagerResult) -> ()) {
-        getWeather(.latLonWeather(lat: lat, lon: lon), completion: completion)
+    func getWeather(
+        lat: Double,
+        lon: Double,
+        completion: @escaping (Result<WeatherDTO?, HttpNetworkManagerError>) -> ()
+    ) {
+        fetchEndpoint(.latLonWeather(lat: lat, lon: lon), completion: completion, type: WeatherDTO.self)
     }
     
-    private func getWeather(_ endpoint: WeatherEndpoint, completion: @escaping (WeatherNetworkManagerResult) -> ()) {
+    func getForecast(
+        lat: Double,
+        lon: Double,
+        completion: @escaping (Result<ForecastDTO?, HttpNetworkManagerError>) -> ()
+    ) {
+        fetchEndpoint(.forecast(lat: lat, lon: lon), completion: completion, type: ForecastDTO.self)
+    }
+    
+    private func fetchEndpoint<T: Decodable>(
+        _ endpoint: WeatherEndpoint,
+        completion: @escaping (Result<T?, HttpNetworkManagerError>) -> (),
+        type: T.Type = T.self
+    ) {
         weatherQueue.sync {
             Thread.sleep(forTimeInterval: 1)
             router.resume(endpoint) { data, response, error in
@@ -42,10 +61,10 @@ struct WeatherNetworkManager: HttpNetworkManager {
                         return completion(.failure(error))
                     case .success(_):
                         guard let data = data,
-                            let weatherData = try? JSONDecoder().decode(WeatherDTO.self, from: data) else {
-                                return completion(.failure(.emptyDataError))
-                            }
-                        return completion(.success(weatherData))
+                              let decodedData = try? JSONDecoder().decode(type, from: data) else {
+                                  return completion(.failure(.emptyDataError))
+                              }
+                        return completion(.success(decodedData))
                 }
             }
         }

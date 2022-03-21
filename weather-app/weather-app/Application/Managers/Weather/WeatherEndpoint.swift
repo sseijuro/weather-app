@@ -10,6 +10,7 @@ import Foundation
 enum WeatherEndpoint: HttpEndpoint {
     case cityWeather(cityName: String)
     case latLonWeather(lat: Double, lon: Double)
+    case forecast(lat: Double, lon: Double)
     
     private var apiKey: String {
         get {
@@ -37,14 +38,14 @@ enum WeatherEndpoint: HttpEndpoint {
                 return "weather"
             case .latLonWeather:
                 return "weather"
+            case .forecast:
+                return "forecast"
         }
     }
     
     var method: HttpMethod {
         switch self {
-            case .cityWeather:
-                return .get
-            case .latLonWeather:
+            default:
                 return .get
         }
     }
@@ -57,19 +58,32 @@ enum WeatherEndpoint: HttpEndpoint {
                     encoding: .url,
                     urlParams: [
                         "q": cityName,
+                        "units": "metric",
                         "appid": apiKey
                     ]
                 )
-        case .latLonWeather(let lat, let lon):
-            return .requestWithParams(
-                bodyParams: nil,
-                encoding: .url,
-                urlParams: [
-                    "lat": lat,
-                    "lon": lon,
-                    "appid": apiKey
-                ]
-            )
+            case .latLonWeather(let lat, let lon):
+                return .requestWithParams(
+                    bodyParams: nil,
+                    encoding: .url,
+                    urlParams: [
+                        "lat": lat,
+                        "lon": lon,
+                        "units": "metric",
+                        "appid": apiKey
+                    ]
+                )
+            case .forecast(let lat, let lon):
+                return .requestWithParams(
+                    bodyParams: nil,
+                    encoding: .url,
+                    urlParams: [
+                        "lat": lat,
+                        "lon": lon,
+                        "units": "metric",
+                        "appid": apiKey
+                    ]
+                )
         }
     }
     

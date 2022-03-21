@@ -27,11 +27,12 @@
 		6E72D77227E7B5A90014FDF9 /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D77127E7B5A90014FDF9 /* HttpRouter.swift */; };
 		6E72D77427E7B9EC0014FDF9 /* WeatherNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D77327E7B9EC0014FDF9 /* WeatherNetworkManager.swift */; };
 		6E72D77627E7BA370014FDF9 /* WeatherEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D77527E7BA370014FDF9 /* WeatherEndpoint.swift */; };
-		6E72D77B27E7BC430014FDF9 /* WeatherNetworkManagerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D77A27E7BC430014FDF9 /* WeatherNetworkManagerResult.swift */; };
 		6E72D77D27E7BCBC0014FDF9 /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D77C27E7BCBC0014FDF9 /* WeatherDTO.swift */; };
 		6E72D78227E7C17E0014FDF9 /* Weather.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E72D78127E7C17E0014FDF9 /* Weather.plist */; };
 		6E72D78427E7C8360014FDF9 /* HttpNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D78327E7C8350014FDF9 /* HttpNetworkManager.swift */; };
 		6E72D78627E7C8570014FDF9 /* HttpNetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D78527E7C8570014FDF9 /* HttpNetworkManagerError.swift */; };
+		990755AD27E87930009FF87E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990755AC27E87930009FF87E /* HomeViewController.swift */; };
+		990755B027E87FE0009FF87E /* ForecastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990755AF27E87FE0009FF87E /* ForecastDTO.swift */; };
 		99EE029227E8588000A7465D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE029127E8588000A7465D /* TabBarController.swift */; };
 		99EE029627E858F700A7465D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE029527E858F700A7465D /* LocationManager.swift */; };
 /* End PBXBuildFile section */
@@ -78,11 +79,12 @@
 		6E72D77127E7B5A90014FDF9 /* HttpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRouter.swift; sourceTree = "<group>"; };
 		6E72D77327E7B9EC0014FDF9 /* WeatherNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManager.swift; sourceTree = "<group>"; };
 		6E72D77527E7BA370014FDF9 /* WeatherEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEndpoint.swift; sourceTree = "<group>"; };
-		6E72D77A27E7BC430014FDF9 /* WeatherNetworkManagerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManagerResult.swift; sourceTree = "<group>"; };
 		6E72D77C27E7BCBC0014FDF9 /* WeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
 		6E72D78127E7C17E0014FDF9 /* Weather.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Weather.plist; sourceTree = "<group>"; };
 		6E72D78327E7C8350014FDF9 /* HttpNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpNetworkManager.swift; sourceTree = "<group>"; };
 		6E72D78527E7C8570014FDF9 /* HttpNetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpNetworkManagerError.swift; sourceTree = "<group>"; };
+		990755AC27E87930009FF87E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		990755AF27E87FE0009FF87E /* ForecastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDTO.swift; sourceTree = "<group>"; };
 		99EE029127E8588000A7465D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		99EE029527E858F700A7465D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,8 +195,8 @@
 		6E72D77027E7B56B0014FDF9 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				990755AA27E871A5009FF87E /* Screens */,
 				99EE029327E858E500A7465D /* Managers */,
-				99EE029027E8587600A7465D /* TabBar */,
 				6E72D75827E7AA810014FDF9 /* Networking */,
 			);
 			path = Application;
@@ -205,11 +207,28 @@
 			children = (
 				6E72D77527E7BA370014FDF9 /* WeatherEndpoint.swift */,
 				6E72D77327E7B9EC0014FDF9 /* WeatherNetworkManager.swift */,
-				6E72D77A27E7BC430014FDF9 /* WeatherNetworkManagerResult.swift */,
 				6E72D77C27E7BCBC0014FDF9 /* WeatherDTO.swift */,
+				990755AF27E87FE0009FF87E /* ForecastDTO.swift */,
 				6E72D78127E7C17E0014FDF9 /* Weather.plist */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		990755AA27E871A5009FF87E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				990755AB27E87924009FF87E /* Home */,
+				99EE029027E8587600A7465D /* TabBar */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		990755AB27E87924009FF87E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				990755AC27E87930009FF87E /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		99EE029027E8587600A7465D /* TabBar */ = {
@@ -379,13 +398,14 @@
 				6E72D77627E7BA370014FDF9 /* WeatherEndpoint.swift in Sources */,
 				6E72D75D27E7ACDC0014FDF9 /* HttpHeaders.swift in Sources */,
 				6E72D76727E7AED20014FDF9 /* HttpParametersURLEncoder.swift in Sources */,
-				6E72D77B27E7BC430014FDF9 /* WeatherNetworkManagerResult.swift in Sources */,
+				990755AD27E87930009FF87E /* HomeViewController.swift in Sources */,
 				6E72D76127E7ACEB0014FDF9 /* HttpMethod.swift in Sources */,
 				6E72D75F27E7ACE30014FDF9 /* HttpParameters.swift in Sources */,
 				99EE029227E8588000A7465D /* TabBarController.swift in Sources */,
 				6E72D76527E7ADBF0014FDF9 /* HttpParametersEncoder.swift in Sources */,
 				6E72D76927E7AED90014FDF9 /* HttpParametersJSONEncoder.swift in Sources */,
 				6E72D76D27E7B47E0014FDF9 /* HttpTask.swift in Sources */,
+				990755B027E87FE0009FF87E /* ForecastDTO.swift in Sources */,
 				6E72D76F27E7B4FD0014FDF9 /* HttpEndpoint.swift in Sources */,
 				6E72D76327E7AD0C0014FDF9 /* HttpParametersEncoding.swift in Sources */,
 				6E72D72527E7A97C0014FDF9 /* AppDelegate.swift in Sources */,

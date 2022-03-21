@@ -31,7 +31,7 @@ extension ViewController: LocationManagerDelegate {
         guard let lat = locations.first?.coordinate.latitude,
               let lon = locations.first?.coordinate.longitude else { return }
     
-        weatherManager.getWeather(lat: lat, lon: lon) { weather in
+        weatherManager.getForecast(lat: lat, lon: lon) { weather in
             print(weather)
         }
     }
