@@ -8,8 +8,9 @@
 import Foundation
 
 enum WeatherEndpoint: HttpEndpoint {
-    case weather(cityName: String)
- 
+    case cityWeather(cityName: String)
+    case latLonWeather(lat: Double, lon: Double)
+    
     private var apiKey: String {
         get {
             guard let filePath = Bundle.main.path(forResource: "Weather", ofType: "plist") else {
@@ -32,21 +33,25 @@ enum WeatherEndpoint: HttpEndpoint {
     
     var path: String {
         switch self {
-            case .weather:
+            case .cityWeather:
+                return "weather"
+            case .latLonWeather:
                 return "weather"
         }
     }
     
     var method: HttpMethod {
         switch self {
-            case .weather:
+            case .cityWeather:
+                return .get
+            case .latLonWeather:
                 return .get
         }
     }
     
     var task: HttpTask {
         switch self {
-            case .weather(let cityName):
+            case .cityWeather(let cityName):
                 return .requestWithParams(
                     bodyParams: nil,
                     encoding: .url,
@@ -55,6 +60,16 @@ enum WeatherEndpoint: HttpEndpoint {
                         "appid": apiKey
                     ]
                 )
+        case .latLonWeather(let lat, let lon):
+            return .requestWithParams(
+                bodyParams: nil,
+                encoding: .url,
+                urlParams: [
+                    "lat": lat,
+                    "lon": lon,
+                    "appid": apiKey
+                ]
+            )
         }
     }
     

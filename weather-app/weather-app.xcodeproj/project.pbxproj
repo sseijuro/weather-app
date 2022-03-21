@@ -32,6 +32,8 @@
 		6E72D78227E7C17E0014FDF9 /* Weather.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E72D78127E7C17E0014FDF9 /* Weather.plist */; };
 		6E72D78427E7C8360014FDF9 /* HttpNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D78327E7C8350014FDF9 /* HttpNetworkManager.swift */; };
 		6E72D78627E7C8570014FDF9 /* HttpNetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72D78527E7C8570014FDF9 /* HttpNetworkManagerError.swift */; };
+		99EE029227E8588000A7465D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE029127E8588000A7465D /* TabBarController.swift */; };
+		99EE029627E858F700A7465D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EE029527E858F700A7465D /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		6E72D78127E7C17E0014FDF9 /* Weather.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Weather.plist; sourceTree = "<group>"; };
 		6E72D78327E7C8350014FDF9 /* HttpNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpNetworkManager.swift; sourceTree = "<group>"; };
 		6E72D78527E7C8570014FDF9 /* HttpNetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpNetworkManagerError.swift; sourceTree = "<group>"; };
+		99EE029127E8588000A7465D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		99EE029527E858F700A7465D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +165,6 @@
 		6E72D75827E7AA810014FDF9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				6E72D77727E7BB5C0014FDF9 /* Weather */,
 				6E72D75B27E7ACC70014FDF9 /* Http */,
 			);
 			path = Networking;
@@ -190,6 +193,8 @@
 		6E72D77027E7B56B0014FDF9 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				99EE029327E858E500A7465D /* Managers */,
+				99EE029027E8587600A7465D /* TabBar */,
 				6E72D75827E7AA810014FDF9 /* Networking */,
 			);
 			path = Application;
@@ -205,6 +210,31 @@
 				6E72D78127E7C17E0014FDF9 /* Weather.plist */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		99EE029027E8587600A7465D /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				99EE029127E8588000A7465D /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		99EE029327E858E500A7465D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				99EE029427E858F000A7465D /* Location */,
+				6E72D77727E7BB5C0014FDF9 /* Weather */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		99EE029427E858F000A7465D /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				99EE029527E858F700A7465D /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,12 +375,14 @@
 				6E72D77227E7B5A90014FDF9 /* HttpRouter.swift in Sources */,
 				6E72D76B27E7AF970014FDF9 /* HttpParametersEncoderError.swift in Sources */,
 				6E72D77427E7B9EC0014FDF9 /* WeatherNetworkManager.swift in Sources */,
+				99EE029627E858F700A7465D /* LocationManager.swift in Sources */,
 				6E72D77627E7BA370014FDF9 /* WeatherEndpoint.swift in Sources */,
 				6E72D75D27E7ACDC0014FDF9 /* HttpHeaders.swift in Sources */,
 				6E72D76727E7AED20014FDF9 /* HttpParametersURLEncoder.swift in Sources */,
 				6E72D77B27E7BC430014FDF9 /* WeatherNetworkManagerResult.swift in Sources */,
 				6E72D76127E7ACEB0014FDF9 /* HttpMethod.swift in Sources */,
 				6E72D75F27E7ACE30014FDF9 /* HttpParameters.swift in Sources */,
+				99EE029227E8588000A7465D /* TabBarController.swift in Sources */,
 				6E72D76527E7ADBF0014FDF9 /* HttpParametersEncoder.swift in Sources */,
 				6E72D76927E7AED90014FDF9 /* HttpParametersJSONEncoder.swift in Sources */,
 				6E72D76D27E7B47E0014FDF9 /* HttpTask.swift in Sources */,

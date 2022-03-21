@@ -10,7 +10,7 @@ import Foundation
 public protocol HttpNetworkManager {}
 
 public extension HttpNetworkManager {
-    public func httpStatusMiddleware(_ response: HTTPURLResponse) -> Result<Any?, HttpNetworkManagerError> {
+    func httpStatusMiddleware(_ response: HTTPURLResponse) -> Result<Any?, HttpNetworkManagerError> {
         switch response.statusCode {
             case 200...299:
                 return .success(nil)
